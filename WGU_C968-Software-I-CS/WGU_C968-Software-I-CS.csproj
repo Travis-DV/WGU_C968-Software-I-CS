@@ -9,4 +9,250 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Content Include="..\.git\COMMIT_EDITMSG">
+        <Link>.git\COMMIT_EDITMSG</Link>
+      </Content>
+      <Content Include="..\.git\config">
+        <Link>.git\config</Link>
+      </Content>
+      <Content Include="..\.git\description">
+        <Link>.git\description</Link>
+      </Content>
+      <Content Include="..\.git\FETCH_HEAD">
+        <Link>.git\FETCH_HEAD</Link>
+      </Content>
+      <Content Include="..\.git\HEAD">
+        <Link>.git\HEAD</Link>
+      </Content>
+      <Content Include="..\.git\hooks\applypatch-msg.sample">
+        <Link>.git\hooks\applypatch-msg.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\commit-msg.sample">
+        <Link>.git\hooks\commit-msg.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\fsmonitor-watchman.sample">
+        <Link>.git\hooks\fsmonitor-watchman.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\post-update.sample">
+        <Link>.git\hooks\post-update.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\pre-applypatch.sample">
+        <Link>.git\hooks\pre-applypatch.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\pre-commit.sample">
+        <Link>.git\hooks\pre-commit.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\pre-merge-commit.sample">
+        <Link>.git\hooks\pre-merge-commit.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\pre-push.sample">
+        <Link>.git\hooks\pre-push.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\pre-rebase.sample">
+        <Link>.git\hooks\pre-rebase.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\pre-receive.sample">
+        <Link>.git\hooks\pre-receive.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\prepare-commit-msg.sample">
+        <Link>.git\hooks\prepare-commit-msg.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\push-to-checkout.sample">
+        <Link>.git\hooks\push-to-checkout.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\sendemail-validate.sample">
+        <Link>.git\hooks\sendemail-validate.sample</Link>
+      </Content>
+      <Content Include="..\.git\hooks\update.sample">
+        <Link>.git\hooks\update.sample</Link>
+      </Content>
+      <Content Include="..\.git\index">
+        <Link>.git\index</Link>
+      </Content>
+      <Content Include="..\.git\info\exclude">
+        <Link>.git\info\exclude</Link>
+      </Content>
+      <Content Include="..\.git\logs\HEAD">
+        <Link>.git\logs\HEAD</Link>
+      </Content>
+      <Content Include="..\.git\logs\refs\heads\main">
+        <Link>.git\logs\refs\heads\main</Link>
+      </Content>
+      <Content Include="..\.git\logs\refs\remotes\origin\HEAD">
+        <Link>.git\logs\refs\remotes\origin\HEAD</Link>
+      </Content>
+      <Content Include="..\.git\objects\06\4ed909076430607a5a315e825a75f2426d46e3">
+        <Link>.git\objects\06\4ed909076430607a5a315e825a75f2426d46e3</Link>
+      </Content>
+      <Content Include="..\.git\objects\16\2f6a56c2aaa55fc4667de480a648fdeaa67f3c">
+        <Link>.git\objects\16\2f6a56c2aaa55fc4667de480a648fdeaa67f3c</Link>
+      </Content>
+      <Content Include="..\.git\objects\17\66f23517279c0f3967a9463f5f6194ab28f9bf">
+        <Link>.git\objects\17\66f23517279c0f3967a9463f5f6194ab28f9bf</Link>
+      </Content>
+      <Content Include="..\.git\objects\18\cabb0c97a9d135db7b744f9b52656b8189d770">
+        <Link>.git\objects\18\cabb0c97a9d135db7b744f9b52656b8189d770</Link>
+      </Content>
+      <Content Include="..\.git\objects\1a\ae156e7aa4af26190a4fd253a0cd6e33dc74cd">
+        <Link>.git\objects\1a\ae156e7aa4af26190a4fd253a0cd6e33dc74cd</Link>
+      </Content>
+      <Content Include="..\.git\objects\26\32c9ab641900d3f0c5821c9ad7fc321e87d59c">
+        <Link>.git\objects\26\32c9ab641900d3f0c5821c9ad7fc321e87d59c</Link>
+      </Content>
+      <Content Include="..\.git\objects\35\eb1ddfbbc029bcab630581847471d7f238ec53">
+        <Link>.git\objects\35\eb1ddfbbc029bcab630581847471d7f238ec53</Link>
+      </Content>
+      <Content Include="..\.git\objects\36\432af0734ec727a53be95b3f63a24fd3c578d4">
+        <Link>.git\objects\36\432af0734ec727a53be95b3f63a24fd3c578d4</Link>
+      </Content>
+      <Content Include="..\.git\objects\39\5dc997321a6229839831253d1c0a7aa6958159">
+        <Link>.git\objects\39\5dc997321a6229839831253d1c0a7aa6958159</Link>
+      </Content>
+      <Content Include="..\.git\objects\3d\c06ef3cc4057524bf5d2cd49936dff789cebe8">
+        <Link>.git\objects\3d\c06ef3cc4057524bf5d2cd49936dff789cebe8</Link>
+      </Content>
+      <Content Include="..\.git\objects\48\2b47fd91ac70118b0c824f8853534fd62bcf09">
+        <Link>.git\objects\48\2b47fd91ac70118b0c824f8853534fd62bcf09</Link>
+      </Content>
+      <Content Include="..\.git\objects\52\51b2a8d07922dd92036f93834c0de0dc2b0631">
+        <Link>.git\objects\52\51b2a8d07922dd92036f93834c0de0dc2b0631</Link>
+      </Content>
+      <Content Include="..\.git\objects\5b\59171187e5ee9a3e18622f4e99fbd09894e9e6">
+        <Link>.git\objects\5b\59171187e5ee9a3e18622f4e99fbd09894e9e6</Link>
+      </Content>
+      <Content Include="..\.git\objects\5e\f550b34e5888e596dadd0fb492de4e265036d3">
+        <Link>.git\objects\5e\f550b34e5888e596dadd0fb492de4e265036d3</Link>
+      </Content>
+      <Content Include="..\.git\objects\66\76eb0382a7a7e27e44bf6ab85fffcb5bb370c5">
+        <Link>.git\objects\66\76eb0382a7a7e27e44bf6ab85fffcb5bb370c5</Link>
+      </Content>
+      <Content Include="..\.git\objects\75\68e70a64c20c30b5c9dd4a20274d06882324f3">
+        <Link>.git\objects\75\68e70a64c20c30b5c9dd4a20274d06882324f3</Link>
+      </Content>
+      <Content Include="..\.git\objects\78\14ea24efb1226638b58bbf50f1769939812f37">
+        <Link>.git\objects\78\14ea24efb1226638b58bbf50f1769939812f37</Link>
+      </Content>
+      <Content Include="..\.git\objects\7b\08163cebc50fb3e777eea4881b68fcebc10590">
+        <Link>.git\objects\7b\08163cebc50fb3e777eea4881b68fcebc10590</Link>
+      </Content>
+      <Content Include="..\.git\objects\7d\dac3aa2d5bf064f47d39dda7329950a519d0f1">
+        <Link>.git\objects\7d\dac3aa2d5bf064f47d39dda7329950a519d0f1</Link>
+      </Content>
+      <Content Include="..\.git\objects\84\490903bb88367461cf1c198163c061740b71f6">
+        <Link>.git\objects\84\490903bb88367461cf1c198163c061740b71f6</Link>
+      </Content>
+      <Content Include="..\.git\objects\88\56e7caed02f3a5289681d49ef4e604bba10c20">
+        <Link>.git\objects\88\56e7caed02f3a5289681d49ef4e604bba10c20</Link>
+      </Content>
+      <Content Include="..\.git\objects\90\d539affb488d5ddd197050882fb4d0cc94b660">
+        <Link>.git\objects\90\d539affb488d5ddd197050882fb4d0cc94b660</Link>
+      </Content>
+      <Content Include="..\.git\objects\92\5b1351bcda9f1244c4634843cb5f994a6b5008">
+        <Link>.git\objects\92\5b1351bcda9f1244c4634843cb5f994a6b5008</Link>
+      </Content>
+      <Content Include="..\.git\objects\96\8e1603da5fabe7fdc30e648cef852e146f3fce">
+        <Link>.git\objects\96\8e1603da5fabe7fdc30e648cef852e146f3fce</Link>
+      </Content>
+      <Content Include="..\.git\objects\98\f06190339047119d48f8df62ab6ff96ecd81e3">
+        <Link>.git\objects\98\f06190339047119d48f8df62ab6ff96ecd81e3</Link>
+      </Content>
+      <Content Include="..\.git\objects\9e\ca3352f49958218001d27e86dcbcc226703aac">
+        <Link>.git\objects\9e\ca3352f49958218001d27e86dcbcc226703aac</Link>
+      </Content>
+      <Content Include="..\.git\objects\a1\cc6338b499f38f9b7a78aef059c2f85aa455c4">
+        <Link>.git\objects\a1\cc6338b499f38f9b7a78aef059c2f85aa455c4</Link>
+      </Content>
+      <Content Include="..\.git\objects\c4\9db42639335434033729d2ac9907c48d582c7f">
+        <Link>.git\objects\c4\9db42639335434033729d2ac9907c48d582c7f</Link>
+      </Content>
+      <Content Include="..\.git\objects\ca\1628a206d5157f5096d1f0d43bf49dc3051238">
+        <Link>.git\objects\ca\1628a206d5157f5096d1f0d43bf49dc3051238</Link>
+      </Content>
+      <Content Include="..\.git\objects\cf\e9359b0a1a2d132821faf30ae743ab3ac0386b">
+        <Link>.git\objects\cf\e9359b0a1a2d132821faf30ae743ab3ac0386b</Link>
+      </Content>
+      <Content Include="..\.git\objects\d4\8a4b87bfc822f0348f2947c44da47d7ed11710">
+        <Link>.git\objects\d4\8a4b87bfc822f0348f2947c44da47d7ed11710</Link>
+      </Content>
+      <Content Include="..\.git\objects\d7\55af2505da102fdebfae6d074854e99963e1ac">
+        <Link>.git\objects\d7\55af2505da102fdebfae6d074854e99963e1ac</Link>
+      </Content>
+      <Content Include="..\.git\objects\df\87cf951fb4858ab7a76b68dd479c98b2df2404">
+        <Link>.git\objects\df\87cf951fb4858ab7a76b68dd479c98b2df2404</Link>
+      </Content>
+      <Content Include="..\.git\objects\eb\c0f3c613c2705d41ccf9c9af3a1895ba24a512">
+        <Link>.git\objects\eb\c0f3c613c2705d41ccf9c9af3a1895ba24a512</Link>
+      </Content>
+      <Content Include="..\.git\objects\f4\ad21505062c1e14dcef018b372ab5e0dc488cb">
+        <Link>.git\objects\f4\ad21505062c1e14dcef018b372ab5e0dc488cb</Link>
+      </Content>
+      <Content Include="..\.git\objects\pack\pack-4a15d8122983522d70a2ccd903cad7ae7582752a.idx">
+        <Link>.git\objects\pack\pack-4a15d8122983522d70a2ccd903cad7ae7582752a.idx</Link>
+      </Content>
+      <Content Include="..\.git\objects\pack\pack-4a15d8122983522d70a2ccd903cad7ae7582752a.pack">
+        <Link>.git\objects\pack\pack-4a15d8122983522d70a2ccd903cad7ae7582752a.pack</Link>
+      </Content>
+      <Content Include="..\.git\objects\pack\pack-4a15d8122983522d70a2ccd903cad7ae7582752a.rev">
+        <Link>.git\objects\pack\pack-4a15d8122983522d70a2ccd903cad7ae7582752a.rev</Link>
+      </Content>
+      <Content Include="..\.git\packed-refs">
+        <Link>.git\packed-refs</Link>
+      </Content>
+      <Content Include="..\.git\refs\heads\main">
+        <Link>.git\refs\heads\main</Link>
+      </Content>
+      <Content Include="..\.git\refs\remotes\origin\HEAD">
+        <Link>.git\refs\remotes\origin\HEAD</Link>
+      </Content>
+      <Content Include="..\.idea\.idea.WGU_C968-Software-I-CS\.idea\.gitignore">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\.idea\.gitignore</Link>
+      </Content>
+      <Content Include="..\.idea\.idea.WGU_C968-Software-I-CS\.idea\encodings.xml">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\.idea\encodings.xml</Link>
+      </Content>
+      <Content Include="..\.idea\.idea.WGU_C968-Software-I-CS\.idea\git_toolbox_prj.xml">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\.idea\git_toolbox_prj.xml</Link>
+      </Content>
+      <Content Include="..\.idea\.idea.WGU_C968-Software-I-CS\.idea\indexLayout.xml">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\.idea\indexLayout.xml</Link>
+      </Content>
+      <Content Include="..\.idea\.idea.WGU_C968-Software-I-CS\.idea\projectSettingsUpdater.xml">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\.idea\projectSettingsUpdater.xml</Link>
+      </Content>
+      <Content Include="..\.idea\.idea.WGU_C968-Software-I-CS\.idea\vcs.xml">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\.idea\vcs.xml</Link>
+      </Content>
+      <Content Include="..\.idea\.idea.WGU_C968-Software-I-CS\.idea\workspace.xml">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\.idea\workspace.xml</Link>
+      </Content>
+      <Content Include="..\README.md">
+        <Link>README.md</Link>
+      </Content>
+      <Content Include="bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.deps.json">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.deps.json</Link>
+      </Content>
+      <Content Include="bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.dll">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.dll</Link>
+      </Content>
+      <Content Include="bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.exe">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.exe</Link>
+      </Content>
+      <Content Include="bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.pdb">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.pdb</Link>
+      </Content>
+      <Content Include="bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.runtimeconfig.json">
+        <Link>.idea\.idea.WGU_C968-Software-I-CS\bin\Debug\net10.0-windows\WGU_C968-Software-I-CS.runtimeconfig.json</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="..\.git\objects\info\">
+        <Link>.git\objects\info</Link>
+      </Folder>
+      <Folder Include="..\.git\refs\tags\">
+        <Link>.git\refs\tags</Link>
+      </Folder>
+    </ItemGroup>
+
 </Project>
