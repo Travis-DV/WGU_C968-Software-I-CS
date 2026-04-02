@@ -97,4 +97,9 @@ public partial class mainForm : Form
             ProductsListView.Items[i].Selected = true;
         }
     }
+
+    private void ExitButton_Click(object sender, EventArgs e)
+    {
+        Environment.Exit(0);
+    }
 }
