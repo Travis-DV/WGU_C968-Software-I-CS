@@ -4,7 +4,7 @@ namespace WGU_C968_Software_I_CS;
 
 public class productClass
 {
-    public BindingList<partClass> AssociatedParts;
+    public BindingList<partClass> AssociatedParts = new BindingList<partClass>();
     public int ID;
     public string Name;
     public decimal Price;
@@ -24,6 +24,17 @@ public class productClass
 
     public partClass lookupAssociatedPart(int PartIndex)
     {
-        return new partInHouse();
+        throw new NotImplementedException();
+    }
+    
+    public ListViewItem ToListViewItem()
+    {
+        ListViewItem ProductLVI = new ListViewItem(this.ID.ToString());
+        ProductLVI.SubItems.Add(this.Name);
+        ProductLVI.SubItems.Add(this.Price.ToString("C"));
+        ProductLVI.SubItems.Add(this.InStock.ToString());
+        ProductLVI.SubItems.Add(this.Minimum.ToString());
+        ProductLVI.SubItems.Add(this.Maximum.ToString());
+        return ProductLVI;
     }
 }
