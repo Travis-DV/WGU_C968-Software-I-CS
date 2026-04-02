@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WGU_C968-Software-I-CS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e756e806bad3d249727a5c711867c17c965bc74a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ff2bd84a1031d69239d503ef3862c3bb422f576")]
 [assembly: System.Reflection.AssemblyProductAttribute("WGU_C968-Software-I-CS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WGU_C968-Software-I-CS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

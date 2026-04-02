@@ -5,8 +5,8 @@ namespace WGU_C968_Software_I_CS;
 
 public class inventoryClass
 {
-    public BindingList<productClass> Products = new BindingList<productClass>();
-    public BindingList<partClass> Parts = new BindingList<partClass>();
+    public advancedListClass Products = new advancedListClass();
+    public advancedListClass Parts = new advancedListClass();
 
     #region  product
     public void addProduct(productClass NewProduct)
@@ -27,17 +27,6 @@ public class inventoryClass
     public void updateProduct(int ProductIndex, productClass UpdatedProduct)
     {
         
-    }
-
-    public ListViewItem[] inventoryProductsLVIA()
-    {
-        ListViewItem[] inventoryProductsLVIA = new ListViewItem[this.Products.Count];
-        for (int i = 0; i < this.Products.Count; i++)
-        {
-            inventoryProductsLVIA[i] = this.Products[i].ToListViewItem();
-        }
-
-        return inventoryProductsLVIA;
     }
     #endregion
 
@@ -62,17 +51,34 @@ public class inventoryClass
     {
         
     }
-
-    public ListViewItem[] inventoryPartsLVIA()
-    {
-        ListViewItem[] inventoryPartsLVIA = new ListViewItem[this.Parts.Count];
-        for (int i = 0; i < this.Parts.Count; i++)
-        {
-            inventoryPartsLVIA[i] = this.Parts[i].ToListViewItem();
-        }
-
-        return inventoryPartsLVIA;
-    }
     #endregion
+
+    public List<int> search(advancedListClass inputList, string searchString)
+    {
+        string[] nameArray = inputList.ToNameArray();
+        List<int> outputIndex = new List<int>();
+        for (int i = 0; i < nameArray.Length; i++)
+        {
+            if (nameArray[i].Contains(searchString, StringComparison.OrdinalIgnoreCase))
+            {
+                outputIndex.Add(i);
+            }
+        }
+        return outputIndex;
+    }
+    
+    public List<int> search(advancedListClass inputList, int searchInt)
+    {
+        int[] idArray = inputList.ToIdArray();
+        List<int> outputIndex = new List<int>();
+        for (int i = 0; i < idArray.Length; i++)
+        {
+            if (idArray[i] == searchInt)
+            {
+                outputIndex.Add(i);
+            }
+        }
+        return outputIndex;
+    }
     
 }
