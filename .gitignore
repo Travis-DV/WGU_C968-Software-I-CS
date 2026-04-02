@@ -1,1 +1,3 @@
-﻿/WGU_C968-Software-I-CS/obj/
+﻿/WGU_C968-Software-I-CS/obj/*
+/WGU_C968-Software-I-CS/bin/*
+.idea/*
