@@ -43,22 +43,23 @@ public class inventoryClass
     #region  product
     public void addProduct(productClass NewProduct)
     {
-        
+        this.Products.Add(NewProduct);
     }
 
+    public void updateProduct(int ProductIndex, productClass UpdatedProduct)
+    {
+        this.Products.RemoveAt(ProductIndex);
+        this.Products.Insert(ProductIndex, UpdatedProduct);
+    }
+    
     public bool removeProduct(int ProductIndex)
     {
-        return false;
+        throw new NotImplementedException();
     }
 
     public productClass lookupProduct(int ProductIndex)
     {
         throw new NotImplementedException();
-    }
-
-    public void updateProduct(int ProductIndex, productClass UpdatedProduct)
-    {
-        
     }
     #endregion
     

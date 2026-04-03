@@ -36,13 +36,13 @@ public partial class mainForm : Form
 
         #endregion
         
-        inventory.Parts.Add(new partInHouse(1, "part1", 11.2m, 10, 20, 2, 1));
-        inventory.Parts.Add(new partInHouse(2, "part2", 21.2m, 20, 20, 2, 1));
-        inventory.Parts.Add(new partInHouse(3, "part3", 31.2m, 30, 30, 2, 1));
+        inventory.Parts.Add(new partInHouse(0, "part1", 11.2m, 10, 1, 10, 1));
+        inventory.Parts.Add(new partInHouse(1, "part2", 21.2m, 20, 2, 20, 2));
+        inventory.Parts.Add(new partInHouse(2, "part3", 31.2m, 30, 3, 30, 2));
         
-        inventory.Products.Add(new partInHouse(1, "product1", 11.2m, 10, 20, 2, 1));
-        inventory.Products.Add(new partInHouse(2, "product2", 21.2m, 20, 20, 2, 1));
-        inventory.Products.Add(new partInHouse(3, "product3", 31.2m, 30, 30, 2, 1));
+        inventory.Products.Add(new productClass(null, null, 0, "product1", 11.2m, 10, 20, 2));
+        inventory.Products.Add(new productClass(null, null,1, "product2", 21.2m, 20, 20, 2));
+        inventory.Products.Add(new productClass(null, null, 2, "product3", 31.2m, 30, 30, 2));
     }
 
     private void PartsSearchButton_Click(object sender, EventArgs e)
@@ -148,12 +148,25 @@ public partial class mainForm : Form
 
     private void ProductsAddButton_Click(object sender, EventArgs e)
     {
-        throw new System.NotImplementedException();
+        ProductForm newProduct = new ProductForm(this.inventory, "Add Product");
+        using (newProduct)
+        {
+            newProduct.ShowDialog();
+        }
+        
     }
 
     private void ProductsModifyButton_Click(object sender, EventArgs e)
     {
-        throw new System.NotImplementedException();
+        List<int> selected = this.ProductsListView.SelectedIndices.Cast<int>().ToList();
+        foreach (int index in selected)
+        {
+            ProductForm modPart = new ProductForm(inventory, "Modify Part", (productClass)inventory.Products[index]);
+            using (modPart)
+            {
+                modPart.ShowDialog();
+            }
+        }
     }
 
     private void ProductsDeleteButton_Click(object sender, EventArgs e)

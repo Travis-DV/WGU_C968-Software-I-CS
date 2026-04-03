@@ -17,7 +17,7 @@ public partial class PartsForm : Form
         this.Inventory = _Inventory;
         this.TitleLabel.Text = TitleString;
         this.Text = TitleString;
-        this.IDTextbox.Text = (this.Inventory.Parts.Count + 1).ToString();
+        this.IDTextbox.Text = (this.Inventory.Parts.Count).ToString();
     }
     public PartsForm(inventoryClass _Inventory, string TitleString, baseData modPart)
     {
@@ -25,7 +25,7 @@ public partial class PartsForm : Form
         this.Inventory = _Inventory;
         this.TitleLabel.Text = TitleString;
         this.Text = TitleString;
-        modIndex = modPart.ID-1;
+        modIndex = modPart.ID;
         
         this.IDTextbox.Text = modPart.ID.ToString();
         this.NameTextbox.Text = modPart.Name;
@@ -185,7 +185,7 @@ public partial class PartsForm : Form
         if (InHouseRadioButton.Checked && modIndex == -1)
         {
             this.Inventory.addPart(new partInHouse(
-                (this.Inventory.Parts.Count + 1),
+                (this.Inventory.Parts.Count),
                 this.NameTextbox.Text,
                 this.price,
                 this.inv,
@@ -197,7 +197,7 @@ public partial class PartsForm : Form
         else if (InHouseRadioButton.Checked && modIndex != -1)
         {
             this.Inventory.updatePart(modIndex, new partInHouse(
-                (this.modIndex + 1),
+                (this.modIndex),
                 this.NameTextbox.Text,
                 this.price,
                 this.inv,
@@ -209,7 +209,7 @@ public partial class PartsForm : Form
         else if (OutsourcedRadioButton.Checked && modIndex == -1)
         {
             this.Inventory.addPart(new partOutsourced(
-                (this.Inventory.Parts.Count + 1),
+                (this.Inventory.Parts.Count),
                 this.NameTextbox.Text,
                 this.price,
                 this.inv,
@@ -221,7 +221,7 @@ public partial class PartsForm : Form
         else if (OutsourcedRadioButton.Checked && modIndex != -1)
         {
             this.Inventory.updatePart(modIndex, new partOutsourced(
-                (this.modIndex + 1),
+                (this.modIndex),
                 this.NameTextbox.Text,
                 this.price,
                 this.inv,

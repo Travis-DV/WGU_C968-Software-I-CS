@@ -259,6 +259,9 @@
       <Compile Update="PartsForm.cs">
         <SubType>Form</SubType>
       </Compile>
+      <Compile Update="ProductForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

@@ -1,0 +1,267 @@
+﻿namespace WGU_C968_Software_I_CS;
+
+public partial class ProductForm : Form
+{
+    private inventoryClass inventory;
+    private productClass product;
+    
+    private int inv;
+    private decimal price = -1;
+    private int min = -1;
+    private int max = -1;
+    private int mid = -1;
+    
+    public ProductForm(inventoryClass _inventory, string TitleString)
+    {
+        InitializeComponent();
+        this.Text = TitleString;
+        this.TitleLabel.Text = TitleString;
+        
+        #region Set Columns
+
+        AllPartsListView.Columns.Add("ID", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("Name", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("Price", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("InStock", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("Min", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("Max", -2, HorizontalAlignment.Center);
+        
+        AssociatedPartsListView.Columns.Add("ID", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("Name", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("Price", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("InStock", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("Min", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("Max", -2, HorizontalAlignment.Center);
+
+        #endregion
+        
+        this.inventory = _inventory;
+        this.IDTextbox.Text = (this.inventory.Products.Count).ToString();
+        this.product = new productClass(AssociatedPartsListView.Items.AddRange, AssociatedPartsListView.Items.Clear, this.inventory.Products.Count, "", -1, -1, -1, -1);
+        this.AllPartsListView.Items.AddRange(this.inventory.Parts.ToListViewItemArray());
+    }
+    public ProductForm(inventoryClass _inventory, string TitleString, productClass product)
+    {
+        InitializeComponent();
+        this.Text = TitleString;
+        this.TitleLabel.Text = TitleString;
+        
+        #region Set Columns
+
+        AllPartsListView.Columns.Add("ID", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("Name", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("Price", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("InStock", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("Min", -2, HorizontalAlignment.Center);
+        AllPartsListView.Columns.Add("Max", -2, HorizontalAlignment.Center);
+        
+        AssociatedPartsListView.Columns.Add("ID", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("Name", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("Price", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("InStock", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("Min", -2, HorizontalAlignment.Center);
+        AssociatedPartsListView.Columns.Add("Max", -2, HorizontalAlignment.Center);
+
+        #endregion
+        
+        this.inventory = _inventory;
+        this.IDTextbox.Text = (this.inventory.Products.Count).ToString();
+        this.product = product;
+        this.product.AssociatedParts.addDelegates(AssociatedPartsListView.Items.AddRange, AssociatedPartsListView.Items.Clear);
+        this.AllPartsListView.Items.AddRange(this.inventory.Parts.ToListViewItemArray());
+        this.AssociatedPartsListView.Items.AddRange(this.product.AssociatedParts.ToListViewItemArray());
+        
+        this.IDTextbox.Text = this.product.ID.ToString();
+        this.NameTextbox.Text = this.product.Name;
+        this.InventoryTextbox.Text = this.product.InStock.ToString();
+        this.PriceTextbox.Text = this.product.Price.ToString();
+        this.MinTextbox.Text = this.product.Minimum.ToString();
+        this.MaxTextbox.Text = this.product.Maximum.ToString();
+
+    }
+
+    private void AllPartsSearchButtonClick(object sender, EventArgs e)
+    {
+        if (AllPartsSearchTextbox.Text == "")
+        {
+            return;
+        }
+        
+        foreach (ListViewItem listViewItem in AllPartsListView.Items)
+        {
+            listViewItem.Selected = false;
+        }
+        List<int> indexs;
+        
+        int searchInt;
+        if (int.TryParse(AllPartsSearchTextbox.Text, out searchInt))
+        {
+            indexs = this.inventory.search(inventory.Parts, searchInt);
+        }
+        else
+        {
+            indexs = this.inventory.search(inventory.Parts, AllPartsSearchTextbox.Text);
+        }
+        
+        foreach (int i in indexs)
+        {
+            AllPartsListView.Items[i].Selected = true;
+        }
+    }
+
+    private void AddPartButton_Click(object sender, EventArgs e)
+    {
+        List<int> selected = this.AllPartsListView.SelectedIndices.Cast<int>().ToList();
+        foreach (int index in selected)
+        {
+            if (this.product.AssociatedParts.Contains(this.inventory.Parts[index]))
+            {
+                continue;
+            }
+            this.product.addAssociatedPart((partClass)this.inventory.Parts[index]);
+        }
+    }
+
+    private void RemovePartButton_Click(object sender, EventArgs e)
+    {
+        List<int> selected = this.AssociatedPartsListView.SelectedIndices.Cast<int>().ToList();
+        int subtractor = 0;
+        for (int i = 0; (i-subtractor) < selected.Count; i++)
+        {
+            this.product.removeAssociatedPart(selected[i-subtractor]-subtractor);
+            selected.RemoveAt(i-subtractor);
+            subtractor++;
+        }
+    }
+
+    private void CancelButton_Click(object sender, EventArgs e)
+    {
+        DialogResult confirmation = MessageBox.Show("Your changes will not be saved!", "Are you sure you want to exit.", MessageBoxButtons.YesNo);
+        if (confirmation == DialogResult.Yes)
+        {
+            this.Close();
+        }
+    }
+
+
+    private void SaveButton_Click(object sender, EventArgs e)
+    {
+        NameTextbox.BackColor = Color.White;
+        InventoryTextbox.BackColor = Color.White;
+        PriceTextbox.BackColor = Color.White;
+        MinTextbox.BackColor = Color.White;
+        MaxTextbox.BackColor = Color.White;
+        
+        if (NameTextbox.Text == "")
+        {
+            NameTextbox.BackColor = Color.Red;
+            MessageBox.Show("Name Required!");
+            return;
+        }
+        if (InventoryTextbox.Text == "")
+        {
+            InventoryTextbox.BackColor = Color.Red;
+            MessageBox.Show("Inventory Amount Required!");
+            return;
+        }
+        if (!int.TryParse(InventoryTextbox.Text, out this.inv))
+        {
+            NameTextbox.BackColor = Color.Red;
+            MessageBox.Show("Inventory amount must be a number!");
+            return;
+        }
+        if (PriceTextbox.Text == "")
+        {
+            PriceTextbox.BackColor = Color.Red;
+            MessageBox.Show($"{PriceLabel.Text} Amount Required!");
+            return;
+        }
+        if (!decimal.TryParse(PriceTextbox.Text, out this.price) || this.price <= 0)
+        {
+            PriceTextbox.BackColor = Color.Red;
+            MessageBox.Show($"{PriceLabel.Text} amount must be a number greater than 0!");
+            return;
+        }
+        if (MinTextbox.Text == "")
+        {
+            MinTextbox.BackColor = Color.Red;
+            MessageBox.Show("Minimum Inventory Amount Required!");
+            return;
+        }
+        if (!int.TryParse(MinTextbox.Text, out this.min) || this.min < 0)
+        {
+            MinTextbox.BackColor = Color.Red;
+            MessageBox.Show($"{MinTextbox.Text} amount must be a number greater than or equal to 0!");
+            return;
+        }
+        if (MaxTextbox.Text == "")
+        {
+            MaxTextbox.BackColor = Color.Red;
+            MessageBox.Show("Inventory Amount Required");
+            return;
+        }
+        if (!int.TryParse(MaxTextbox.Text, out this.max) || this.max <= 0)
+        {
+            MaxTextbox.BackColor = Color.Red;
+            MessageBox.Show($"{MaxTextbox.Text} amount must be a number greater than 0!");
+            return;
+        }
+        if (this.min > this.max)
+        {
+            MinTextbox.BackColor = Color.Red;
+            MessageBox.Show($"Minimum inventory amount must be less than maximum ({min})!");
+            return;
+        }
+        if (this.max < this.min)
+        {
+            MaxTextbox.BackColor = Color.Red;
+            MessageBox.Show($"Maximum inventory amount must be greater than minimum ({max})!");
+            return;
+        }
+        if (this.min == this.max)
+        {
+            MinTextbox.BackColor = Color.Red;
+            MaxTextbox.BackColor = Color.Red;
+            MessageBox.Show($"Minimum and Maximum can not be the same!");
+            return;
+        }
+        if (this.inv < this.min)
+        {
+            InventoryTextbox.BackColor = Color.Red;
+            MessageBox.Show($"Inventory amount must be a number greater than the minimum ({min})");
+            return;
+        }
+        if (this.inv > this.max)
+        {
+            InventoryTextbox.BackColor = Color.Red;
+            MessageBox.Show($"Inventory amount must be a number less than the maximum ({max})");
+            return;
+        }
+
+        if (this.product.AssociatedParts.Count <= 0)
+        {
+            MessageBox.Show("Product have at least one associated part!");
+            return;
+        }
+
+        this.product.Name = this.NameTextbox.Text;
+        this.product.Price = this.price;
+        this.product.InStock = this.inv;
+        this.product.Minimum = this.min;
+        this.product.Maximum = this.max;
+        this.product.AssociatedParts.removeDelegates();
+        
+        Console.WriteLine(this.product.AssociatedParts.Count);
+
+
+        if (this.product.ID > this.inventory.Products.Count-1)
+        {
+            this.inventory.addProduct(this.product);
+        }
+        else if (this.product.ID <= this.inventory.Products.Count-1)
+        {
+            this.inventory.updateProduct(int.Parse(this.IDTextbox.Text), this.product);
+        }
+        this.Close();
+    }
+}

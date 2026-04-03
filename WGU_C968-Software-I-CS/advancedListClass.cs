@@ -5,8 +5,8 @@ namespace WGU_C968_Software_I_CS;
 
 public class advancedListClass : BindingList<baseData>
 {
-    private mainForm.LVIAddRange lviAddRange;
-    private mainForm.LVIClear lviClear;
+    private mainForm.LVIAddRange? lviAddRange;
+    private mainForm.LVIClear? lviClear;
 
     public new baseData this[int i]
     {
@@ -16,7 +16,7 @@ public class advancedListClass : BindingList<baseData>
         }
     }
     
-    public advancedListClass(mainForm.LVIAddRange _lviAddRange, mainForm.LVIClear _lviClear) : base()
+    public advancedListClass(mainForm.LVIAddRange? _lviAddRange, mainForm.LVIClear? _lviClear) : base()
     {
         this.lviAddRange = _lviAddRange;
         this.lviClear = _lviClear;
@@ -24,23 +24,35 @@ public class advancedListClass : BindingList<baseData>
 
     public new void Add(baseData newItem)
     {
-        this.lviClear();
+        this.lviClear?.Invoke();
         base.Add(newItem);
-        this.lviAddRange(this.ToListViewItemArray());
+        this.lviAddRange?.Invoke(this.ToListViewItemArray());
     }
 
     public new void RemoveAt(int index)
     {
-        this.lviClear();
+        this.lviClear?.Invoke();
         base.RemoveAt(index);
-        this.lviAddRange(this.ToListViewItemArray());
+        this.lviAddRange?.Invoke(this.ToListViewItemArray());
     }
 
     public new void Insert(int index, baseData item)
     {
-        this.lviClear();
+        this.lviClear?.Invoke();
         base.Insert(index, item);
-        this.lviAddRange(this.ToListViewItemArray());
+        this.lviAddRange?.Invoke(this.ToListViewItemArray());
+    }
+
+    public void addDelegates(mainForm.LVIAddRange _lviAddRange, mainForm.LVIClear _lviClear)
+    {
+        this.lviAddRange = _lviAddRange;
+        this.lviClear = _lviClear;
+    }
+
+    public void removeDelegates()
+    {
+        this.lviAddRange = null;
+        this.lviClear = null;
     }
     
     public ListViewItem[] ToListViewItemArray()
