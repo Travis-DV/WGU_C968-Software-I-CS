@@ -30,12 +30,13 @@ public class inventoryClass
     public bool removePart(int PartIndex)
     {
         this.Parts.RemoveAt(PartIndex);
-        return false;
+        return true;
     }
 
     public partClass lookupPart(int PartIndex)
     {
-        throw new NotImplementedException();
+        return (partClass)this.Parts[PartIndex];
+        //what was this supposed to do? nothing in the requirements needs this
     }
     
     #endregion
@@ -54,12 +55,13 @@ public class inventoryClass
     
     public bool removeProduct(int ProductIndex)
     {
-        throw new NotImplementedException();
+        this.Parts.RemoveAt(ProductIndex);
+        return true;
     }
 
     public productClass lookupProduct(int ProductIndex)
     {
-        throw new NotImplementedException();
+        return (productClass)this.Parts[ProductIndex];
     }
     #endregion
     

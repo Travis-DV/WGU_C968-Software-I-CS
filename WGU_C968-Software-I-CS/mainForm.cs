@@ -136,6 +136,21 @@ public partial class mainForm : Form
         int subtractor = 0;
         for (int i = 0; (i-subtractor) < selected.Count; i++)
         {
+            bool dontdo = false;
+            foreach (baseData bd in this.inventory.Products)
+            {
+                productClass product = (productClass)bd;
+                if (product.AssociatedParts.Contains(this.inventory.Parts[selected[i - subtractor] - subtractor]))
+                {
+                    MessageBox.Show($"Can not delete part associated with a product ({product.Name})");
+                    dontdo = true;
+                }
+            }
+
+            if (dontdo)
+            {
+                continue;
+            }
             DialogResult confirmation = MessageBox.Show($"Are you sure you want to Delete {this.inventory.Parts[selected[i-subtractor]-subtractor].Name}.\nAll data will be lost!", $"Are you sure!", MessageBoxButtons.YesNo);
             if (confirmation == DialogResult.Yes)
             {
@@ -178,7 +193,7 @@ public partial class mainForm : Form
             DialogResult confirmation = MessageBox.Show($"Are you sure you want to Delete {this.inventory.Products[selected[i-subtractor]-subtractor].Name}.\nAll data will be lost!", $"Are you sure!", MessageBoxButtons.YesNo);
             if (confirmation == DialogResult.Yes)
             {
-                inventory.Products.RemoveAt(selected[i-subtractor]-subtractor);
+                inventory.removeProduct(selected[i-subtractor]-subtractor);
                 selected.RemoveAt(i-subtractor);
                 subtractor++;
             }

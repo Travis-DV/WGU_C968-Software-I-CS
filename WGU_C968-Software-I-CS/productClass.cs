@@ -30,6 +30,6 @@ public class productClass : baseData
 
     public partClass lookupAssociatedPart(int PartIndex)
     {
-        throw new NotImplementedException();
+        return (partClass)this.AssociatedParts[PartIndex];
     }
 }

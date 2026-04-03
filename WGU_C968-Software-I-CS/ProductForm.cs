@@ -166,7 +166,7 @@ public partial class ProductForm : Form
         }
         if (!int.TryParse(InventoryTextbox.Text, out this.inv))
         {
-            NameTextbox.BackColor = Color.Red;
+            InventoryTextbox.BackColor = Color.Red;
             MessageBox.Show("Inventory amount must be a number!");
             return;
         }
