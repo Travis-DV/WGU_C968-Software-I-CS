@@ -37,12 +37,14 @@ partial class mainForm
         PartsSearchButton = new System.Windows.Forms.Button();
         ProductsSearchButton = new System.Windows.Forms.Button();
         ProductsSearchTextbox = new System.Windows.Forms.TextBox();
-        label1 = new System.Windows.Forms.Label();
-        button1 = new System.Windows.Forms.Button();
-        button2 = new System.Windows.Forms.Button();
-        button3 = new System.Windows.Forms.Button();
-        button4 = new System.Windows.Forms.Button();
+        TitleLabel = new System.Windows.Forms.Label();
+        PartsDeleteButton = new System.Windows.Forms.Button();
+        PartsModifyButton = new System.Windows.Forms.Button();
+        ProductsModifyButton = new System.Windows.Forms.Button();
+        ProductsDeleteButton = new System.Windows.Forms.Button();
         ExitButton = new System.Windows.Forms.Button();
+        PartsAddButton = new System.Windows.Forms.Button();
+        ProductsAddButton = new System.Windows.Forms.Button();
         SuspendLayout();
         // 
         // PartsListView
@@ -122,52 +124,56 @@ partial class mainForm
         ProductsSearchTextbox.Size = new System.Drawing.Size(100, 23);
         ProductsSearchTextbox.TabIndex = 7;
         // 
-        // label1
+        // TitleLabel
         // 
-        label1.Font = new System.Drawing.Font("Segoe UI", 20F);
-        label1.Location = new System.Drawing.Point(12, 9);
-        label1.Name = "label1";
-        label1.Size = new System.Drawing.Size(388, 39);
-        label1.TabIndex = 9;
-        label1.Text = "Inventory Management System";
+        TitleLabel.Font = new System.Drawing.Font("Segoe UI", 20F);
+        TitleLabel.Location = new System.Drawing.Point(12, 9);
+        TitleLabel.Name = "TitleLabel";
+        TitleLabel.Size = new System.Drawing.Size(388, 39);
+        TitleLabel.TabIndex = 9;
+        TitleLabel.Text = "Inventory Management System";
         // 
-        // button1
+        // PartsDeleteButton
         // 
-        button1.Location = new System.Drawing.Point(282, 237);
-        button1.Name = "button1";
-        button1.Size = new System.Drawing.Size(75, 23);
-        button1.TabIndex = 10;
-        button1.Text = "button1";
-        button1.UseVisualStyleBackColor = true;
+        PartsDeleteButton.Location = new System.Drawing.Point(282, 237);
+        PartsDeleteButton.Name = "PartsDeleteButton";
+        PartsDeleteButton.Size = new System.Drawing.Size(75, 23);
+        PartsDeleteButton.TabIndex = 10;
+        PartsDeleteButton.Text = "Delete";
+        PartsDeleteButton.UseVisualStyleBackColor = true;
+        PartsDeleteButton.Click += PartsDeleteButton_Click;
         // 
-        // button2
+        // PartsModifyButton
         // 
-        button2.Location = new System.Drawing.Point(201, 237);
-        button2.Name = "button2";
-        button2.Size = new System.Drawing.Size(75, 23);
-        button2.TabIndex = 11;
-        button2.Text = "button2";
-        button2.UseVisualStyleBackColor = true;
+        PartsModifyButton.Location = new System.Drawing.Point(201, 237);
+        PartsModifyButton.Name = "PartsModifyButton";
+        PartsModifyButton.Size = new System.Drawing.Size(75, 23);
+        PartsModifyButton.TabIndex = 11;
+        PartsModifyButton.Text = "Modify";
+        PartsModifyButton.UseVisualStyleBackColor = true;
+        PartsModifyButton.Click += PartsModifyButton_Click;
         // 
-        // button3
+        // ProductsModifyButton
         // 
-        button3.Location = new System.Drawing.Point(632, 237);
-        button3.Name = "button3";
-        button3.Size = new System.Drawing.Size(75, 23);
-        button3.TabIndex = 13;
-        button3.Text = "button3";
-        button3.UseVisualStyleBackColor = true;
+        ProductsModifyButton.Location = new System.Drawing.Point(632, 237);
+        ProductsModifyButton.Name = "ProductsModifyButton";
+        ProductsModifyButton.Size = new System.Drawing.Size(75, 23);
+        ProductsModifyButton.TabIndex = 13;
+        ProductsModifyButton.Text = "Modify";
+        ProductsModifyButton.UseVisualStyleBackColor = true;
+        ProductsModifyButton.Click += ProductsModifyButton_Click;
         // 
-        // button4
+        // ProductsDeleteButton
         // 
-        button4.Location = new System.Drawing.Point(713, 237);
-        button4.Name = "button4";
-        button4.Size = new System.Drawing.Size(75, 23);
-        button4.TabIndex = 12;
-        button4.Text = "button4";
-        button4.UseVisualStyleBackColor = true;
+        ProductsDeleteButton.Location = new System.Drawing.Point(713, 237);
+        ProductsDeleteButton.Name = "ProductsDeleteButton";
+        ProductsDeleteButton.Size = new System.Drawing.Size(75, 23);
+        ProductsDeleteButton.TabIndex = 12;
+        ProductsDeleteButton.Text = "Delete";
+        ProductsDeleteButton.UseVisualStyleBackColor = true;
+        ProductsDeleteButton.Click += ProductsDeleteButton_Click;
         // 
-        // button5
+        // ExitButton
         // 
         ExitButton.Location = new System.Drawing.Point(713, 281);
         ExitButton.Name = "ExitButton";
@@ -177,17 +183,39 @@ partial class mainForm
         ExitButton.UseVisualStyleBackColor = true;
         ExitButton.Click += ExitButton_Click;
         // 
+        // PartsAddButton
+        // 
+        PartsAddButton.Location = new System.Drawing.Point(120, 237);
+        PartsAddButton.Name = "PartsAddButton";
+        PartsAddButton.Size = new System.Drawing.Size(75, 23);
+        PartsAddButton.TabIndex = 15;
+        PartsAddButton.Text = "Add";
+        PartsAddButton.UseVisualStyleBackColor = true;
+        PartsAddButton.Click += PartsAddButton_Click;
+        // 
+        // ProductsAddButton
+        // 
+        ProductsAddButton.Location = new System.Drawing.Point(551, 237);
+        ProductsAddButton.Name = "ProductsAddButton";
+        ProductsAddButton.Size = new System.Drawing.Size(75, 23);
+        ProductsAddButton.TabIndex = 16;
+        ProductsAddButton.Text = "Add";
+        ProductsAddButton.UseVisualStyleBackColor = true;
+        ProductsAddButton.Click += ProductsAddButton_Click;
+        // 
         // mainForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         ClientSize = new System.Drawing.Size(800, 450);
+        Controls.Add(ProductsAddButton);
+        Controls.Add(PartsAddButton);
         Controls.Add(ExitButton);
-        Controls.Add(button3);
-        Controls.Add(button4);
-        Controls.Add(button2);
-        Controls.Add(button1);
-        Controls.Add(label1);
+        Controls.Add(ProductsModifyButton);
+        Controls.Add(ProductsDeleteButton);
+        Controls.Add(PartsModifyButton);
+        Controls.Add(PartsDeleteButton);
+        Controls.Add(TitleLabel);
         Controls.Add(ProductsSearchButton);
         Controls.Add(ProductsSearchTextbox);
         Controls.Add(PartsSearchButton);
@@ -201,11 +229,14 @@ partial class mainForm
         PerformLayout();
     }
 
-    private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.Button button1;
-    private System.Windows.Forms.Button button2;
-    private System.Windows.Forms.Button button3;
-    private System.Windows.Forms.Button button4;
+    private System.Windows.Forms.Button PartsAddButton;
+    private System.Windows.Forms.Button ProductsAddButton;
+
+    private System.Windows.Forms.Label TitleLabel;
+    private System.Windows.Forms.Button PartsDeleteButton;
+    private System.Windows.Forms.Button PartsModifyButton;
+    private System.Windows.Forms.Button ProductsModifyButton;
+    private System.Windows.Forms.Button ProductsDeleteButton;
     private System.Windows.Forms.Button ExitButton;
 
     private System.Windows.Forms.Button ProductsSearchButton;

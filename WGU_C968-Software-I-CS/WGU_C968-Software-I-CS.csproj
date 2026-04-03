@@ -255,4 +255,10 @@
       </Folder>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="PartsForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>

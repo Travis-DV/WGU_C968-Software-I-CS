@@ -3,12 +3,20 @@ namespace WGU_C968_Software_I_CS;
 public partial class mainForm : Form
 {
     
-    inventoryClass inventory = new inventoryClass();
+    inventoryClass inventory;
+
+    public delegate void LVIAddRange(params ListViewItem[] items);
+
+    public delegate void LVIClear();
     
     public mainForm()
     {
         InitializeComponent();
-        
+        LVIAddRange PartsLVIAddRange = PartsListView.Items.AddRange;
+        LVIClear PartsLVIClear = PartsListView.Items.Clear;
+        LVIAddRange ProductsLVIAddRange = ProductsListView.Items.AddRange;
+        LVIClear ProductsLVIClear = ProductsListView.Items.Clear;
+        this.inventory = new inventoryClass(PartsLVIAddRange, PartsLVIClear, ProductsLVIAddRange, ProductsLVIClear);
 
         #region Set Columns
 
@@ -35,9 +43,6 @@ public partial class mainForm : Form
         inventory.Products.Add(new partInHouse(1, "product1", 11.2m, 10, 20, 2, 1));
         inventory.Products.Add(new partInHouse(2, "product2", 21.2m, 20, 20, 2, 1));
         inventory.Products.Add(new partInHouse(3, "product3", 31.2m, 30, 30, 2, 1));
-        
-        PartsListView.Items.AddRange(inventory.Parts.ToListViewItemArray());
-        ProductsListView.Items.AddRange(inventory.Products.ToListViewItemArray());
     }
 
     private void PartsSearchButton_Click(object sender, EventArgs e)
@@ -101,5 +106,52 @@ public partial class mainForm : Form
     private void ExitButton_Click(object sender, EventArgs e)
     {
         Environment.Exit(0);
+    }
+
+    private void PartsAddButton_Click(object sender, EventArgs e)
+    {
+        PartsForm newPart = new PartsForm(inventory, "Add Part");
+        using (newPart)
+        {
+            newPart.ShowDialog();
+        }
+    }
+
+    private void PartsModifyButton_Click(object sender, EventArgs e)
+    {
+        this.external(this.PartsListView.SelectedIndices.Cast<int>().ToList());
+    }
+
+    private void external(List<int> selected)
+    {
+        foreach (int index in selected)
+        {
+            PartsForm modPart = new PartsForm(inventory, "Modify Part", inventory.Parts[index]);
+            using (modPart)
+            {
+                modPart.ShowDialog();
+            }
+
+        }
+    }
+
+    private void PartsDeleteButton_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void ProductsAddButton_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void ProductsModifyButton_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void ProductsDeleteButton_Click(object sender, EventArgs e)
+    {
+        throw new System.NotImplementedException();
     }
 }

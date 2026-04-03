@@ -5,8 +5,39 @@ namespace WGU_C968_Software_I_CS;
 
 public class inventoryClass
 {
-    public advancedListClass Products = new advancedListClass();
-    public advancedListClass Parts = new advancedListClass();
+    public advancedListClass Products;
+    public advancedListClass Parts;
+
+    public inventoryClass(mainForm.LVIAddRange partsLVIAddRange, mainForm.LVIClear partsLVIClear, mainForm.LVIAddRange productsLVIAddRange, mainForm.LVIClear productsLVIClear)
+    {
+        Parts = new advancedListClass(partsLVIAddRange, partsLVIClear);
+        Products = new advancedListClass(productsLVIAddRange, productsLVIClear);
+    }
+    
+    #region parts
+
+    public void addPart(partClass NewPart)
+    {
+        this.Parts.Add(NewPart);
+    }
+ 
+    public void updatePart(int PartIndex, partClass UpdatedPart)
+    {
+        this.Parts.RemoveAt(PartIndex);
+        this.Parts.Insert(PartIndex, UpdatedPart);
+    }
+    
+    public bool removePart(int PartIndex)
+    {
+        return false;
+    }
+
+    public partClass lookupPart(int PartIndex)
+    {
+        throw new NotImplementedException();
+    }
+    
+    #endregion
 
     #region  product
     public void addProduct(productClass NewProduct)
@@ -29,30 +60,7 @@ public class inventoryClass
         
     }
     #endregion
-
-    #region parts
-
-    public void addPart(productClass NewPart)
-    {
-        
-    }
- 
-    public bool removePart(int PartIndex)
-    {
-        return false;
-    }
-
-    public partClass lookupPart(int PartIndex)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void updatePart(int PartIndex, productClass UpdatedPart)
-    {
-        
-    }
-    #endregion
-
+    
     public List<int> search(advancedListClass inputList, string searchString)
     {
         string[] nameArray = inputList.ToNameArray();

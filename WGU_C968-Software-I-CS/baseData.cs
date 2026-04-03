@@ -1,8 +1,11 @@
-﻿namespace WGU_C968_Software_I_CS;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-public abstract class baseData()
+namespace WGU_C968_Software_I_CS;
+
+public abstract class baseData
 {
-    public int ID;
+    public int ID { get; set; }
     public string Name;
     public decimal Price;
     public int InStock;

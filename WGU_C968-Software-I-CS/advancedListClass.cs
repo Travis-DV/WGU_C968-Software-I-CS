@@ -1,10 +1,47 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace WGU_C968_Software_I_CS;
 
 public class advancedListClass : BindingList<baseData>
 {
-    public advancedListClass() : base() {}
+    private mainForm.LVIAddRange lviAddRange;
+    private mainForm.LVIClear lviClear;
+
+    public new baseData this[int i]
+    {
+        get
+        {
+            return base[i];
+        }
+    }
+    
+    public advancedListClass(mainForm.LVIAddRange _lviAddRange, mainForm.LVIClear _lviClear) : base()
+    {
+        this.lviAddRange = _lviAddRange;
+        this.lviClear = _lviClear;
+    }
+
+    public new void Add(baseData newItem)
+    {
+        this.lviClear();
+        base.Add(newItem);
+        this.lviAddRange(this.ToListViewItemArray());
+    }
+
+    public new void RemoveAt(int index)
+    {
+        this.lviClear();
+        base.RemoveAt(index);
+        this.lviAddRange(this.ToListViewItemArray());
+    }
+
+    public new void Insert(int index, baseData item)
+    {
+        this.lviClear();
+        base.Insert(index, item);
+        this.lviAddRange(this.ToListViewItemArray());
+    }
     
     public ListViewItem[] ToListViewItemArray()
     {
