@@ -171,6 +171,17 @@ public partial class mainForm : Form
 
     private void ProductsDeleteButton_Click(object sender, EventArgs e)
     {
-        throw new System.NotImplementedException();
+        List<int> selected = this.ProductsListView.SelectedIndices.Cast<int>().ToList();
+        int subtractor = 0;
+        for (int i = 0; (i-subtractor) < selected.Count; i++)
+        {
+            DialogResult confirmation = MessageBox.Show($"Are you sure you want to Delete {this.inventory.Products[selected[i-subtractor]-subtractor].Name}.\nAll data will be lost!", $"Are you sure!", MessageBoxButtons.YesNo);
+            if (confirmation == DialogResult.Yes)
+            {
+                inventory.Products.RemoveAt(selected[i-subtractor]-subtractor);
+                selected.RemoveAt(i-subtractor);
+                subtractor++;
+            }
+        }
     }
 }
