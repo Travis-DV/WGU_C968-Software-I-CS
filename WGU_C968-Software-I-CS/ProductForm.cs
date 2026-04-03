@@ -14,6 +14,8 @@ public partial class ProductForm : Form
     public ProductForm(inventoryClass _inventory, string TitleString)
     {
         InitializeComponent();
+        AllPartsListView.HideSelection = true;
+        AssociatedPartsListView.HideSelection = true;
         this.Text = TitleString;
         this.TitleLabel.Text = TitleString;
         
@@ -43,6 +45,8 @@ public partial class ProductForm : Form
     public ProductForm(inventoryClass _inventory, string TitleString, productClass product)
     {
         InitializeComponent();
+        AllPartsListView.HideSelection = true;
+        AssociatedPartsListView.HideSelection = true;
         this.Text = TitleString;
         this.TitleLabel.Text = TitleString;
         
@@ -263,5 +267,37 @@ public partial class ProductForm : Form
             this.inventory.updateProduct(int.Parse(this.IDTextbox.Text), this.product);
         }
         this.Close();
+    }
+
+    private void AllPartsListView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        this.AllPartsListView.Items.Cast<ListViewItem>()
+            .ToList().ForEach(item =>
+            {
+                item.BackColor = SystemColors.Window;
+                item.ForeColor = SystemColors.WindowText;
+            });
+        this.AllPartsListView.SelectedItems.Cast<ListViewItem>()
+            .ToList().ForEach(item =>
+            {
+                item.BackColor = SystemColors.Highlight;
+                item.ForeColor = SystemColors.HighlightText;
+            });
+    }
+
+    private void AssociatedPartsListView_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        this.AssociatedPartsListView.Items.Cast<ListViewItem>()
+            .ToList().ForEach(item =>
+            {
+                item.BackColor = SystemColors.Window;
+                item.ForeColor = SystemColors.WindowText;
+            });
+        this.AssociatedPartsListView.SelectedItems.Cast<ListViewItem>()
+            .ToList().ForEach(item =>
+            {
+                item.BackColor = SystemColors.Highlight;
+                item.ForeColor = SystemColors.HighlightText;
+            });
     }
 }

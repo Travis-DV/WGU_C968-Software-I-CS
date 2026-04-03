@@ -57,6 +57,7 @@ partial class mainForm
         PartsListView.TabIndex = 1;
         PartsListView.UseCompatibleStateImageBehavior = false;
         PartsListView.View = System.Windows.Forms.View.Details;
+        PartsListView.SelectedIndexChanged += PartsListView_SelectedIndexChanged;
         // 
         // PartsLabel
         // 
@@ -87,6 +88,7 @@ partial class mainForm
         ProductsListView.TabIndex = 3;
         ProductsListView.UseCompatibleStateImageBehavior = false;
         ProductsListView.View = System.Windows.Forms.View.Details;
+        ProductsListView.SelectedIndexChanged += ProductsListView_SelectedIndexChanged;
         // 
         // PartsSearchTextbox
         // 
