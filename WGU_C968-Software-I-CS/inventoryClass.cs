@@ -29,6 +29,7 @@ public class inventoryClass
     
     public bool removePart(int PartIndex)
     {
+        this.Parts.RemoveAt(PartIndex);
         return false;
     }
 

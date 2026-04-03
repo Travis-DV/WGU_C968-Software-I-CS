@@ -119,11 +119,7 @@ public partial class mainForm : Form
 
     private void PartsModifyButton_Click(object sender, EventArgs e)
     {
-        this.external(this.PartsListView.SelectedIndices.Cast<int>().ToList());
-    }
-
-    private void external(List<int> selected)
-    {
+        List<int> selected = this.PartsListView.SelectedIndices.Cast<int>().ToList();
         foreach (int index in selected)
         {
             PartsForm modPart = new PartsForm(inventory, "Modify Part", inventory.Parts[index]);
@@ -131,13 +127,23 @@ public partial class mainForm : Form
             {
                 modPart.ShowDialog();
             }
-
         }
     }
 
     private void PartsDeleteButton_Click(object sender, EventArgs e)
     {
-        throw new System.NotImplementedException();
+        List<int> selected = this.PartsListView.SelectedIndices.Cast<int>().ToList();
+        int subtractor = 0;
+        for (int i = 0; (i-subtractor) < selected.Count; i++)
+        {
+            DialogResult confirmation = MessageBox.Show($"Are you sure you want to Delete {this.inventory.Parts[selected[i-subtractor]-subtractor].Name}.\nAll data will be lost!", $"Are you sure!", MessageBoxButtons.YesNo);
+            if (confirmation == DialogResult.Yes)
+            {
+                inventory.Parts.RemoveAt(selected[i-subtractor]-subtractor);
+                selected.RemoveAt(i-subtractor);
+                subtractor++;
+            }
+        }
     }
 
     private void ProductsAddButton_Click(object sender, EventArgs e)
