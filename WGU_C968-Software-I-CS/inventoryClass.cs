@@ -55,7 +55,7 @@ public class inventoryClass
     
     public bool removeProduct(int ProductIndex)
     {
-        this.Parts.RemoveAt(ProductIndex);
+        this.Products.RemoveAt(ProductIndex);
         return true;
     }
 

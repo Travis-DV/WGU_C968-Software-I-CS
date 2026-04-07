@@ -8,8 +8,6 @@ public partial class PartsForm : Form
     private int min = -1;
     private int max = -1;
     private int mid = -1;
-
-    private int modIndex = -1;
     
     public PartsForm(inventoryClass _Inventory, string TitleString)
     {
@@ -17,7 +15,7 @@ public partial class PartsForm : Form
         this.Inventory = _Inventory;
         this.TitleLabel.Text = TitleString;
         this.Text = TitleString;
-        this.IDTextbox.Text = (this.Inventory.Parts.Count).ToString();
+        this.IDTextbox.Text = (this.Inventory.Parts.Last().Value.ID+1).ToString();
     }
     public PartsForm(inventoryClass _Inventory, string TitleString, baseData modPart)
     {
@@ -25,9 +23,8 @@ public partial class PartsForm : Form
         this.Inventory = _Inventory;
         this.TitleLabel.Text = TitleString;
         this.Text = TitleString;
-        modIndex = modPart.ID;
         
-        this.IDTextbox.Text = modPart.ID.ToString();
+        this.IDTextbox.Text = (modPart.ID).ToString();
         this.NameTextbox.Text = modPart.Name;
         this.InventoryTextbox.Text = modPart.InStock.ToString();
         this.VariableTextbox1.Text = modPart.Price.ToString();
@@ -182,10 +179,10 @@ public partial class PartsForm : Form
             return;
         }
 
-        if (InHouseRadioButton.Checked && modIndex == -1)
+        if (InHouseRadioButton.Checked && !this.Inventory.Parts.ContainsKey(int.Parse(this.IDTextbox.Text)))
         {
             this.Inventory.addPart(new partInHouse(
-                (this.Inventory.Parts.Count),
+                int.Parse(this.IDTextbox.Text),
                 this.NameTextbox.Text,
                 this.price,
                 this.inv,
@@ -194,10 +191,10 @@ public partial class PartsForm : Form
                 this.mid
             )); 
         }
-        else if (InHouseRadioButton.Checked && modIndex != -1)
+        else if (InHouseRadioButton.Checked && this.Inventory.Parts.ContainsKey(int.Parse(this.IDTextbox.Text)))
         {
-            this.Inventory.updatePart(modIndex, new partInHouse(
-                (this.modIndex),
+            this.Inventory.updatePart(int.Parse(this.IDTextbox.Text), new partInHouse(
+                int.Parse(this.IDTextbox.Text),
                 this.NameTextbox.Text,
                 this.price,
                 this.inv,
@@ -206,10 +203,10 @@ public partial class PartsForm : Form
                 this.mid
             ));
         }
-        else if (OutsourcedRadioButton.Checked && modIndex == -1)
+        else if (OutsourcedRadioButton.Checked && !this.Inventory.Parts.ContainsKey(int.Parse(this.IDTextbox.Text)))
         {
             this.Inventory.addPart(new partOutsourced(
-                (this.Inventory.Parts.Count),
+                int.Parse(this.IDTextbox.Text),
                 this.NameTextbox.Text,
                 this.price,
                 this.inv,
@@ -218,10 +215,10 @@ public partial class PartsForm : Form
                 VariableTextbox2.Text
             )); 
         }
-        else if (OutsourcedRadioButton.Checked && modIndex != -1)
+        else if (OutsourcedRadioButton.Checked && this.Inventory.Parts.ContainsKey(int.Parse(this.IDTextbox.Text)))
         {
-            this.Inventory.updatePart(modIndex, new partOutsourced(
-                (this.modIndex),
+            this.Inventory.updatePart(int.Parse(this.IDTextbox.Text), new partOutsourced(
+                int.Parse(this.IDTextbox.Text),
                 this.NameTextbox.Text,
                 this.price,
                 this.inv,

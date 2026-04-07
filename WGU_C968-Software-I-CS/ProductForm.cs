@@ -38,8 +38,8 @@ public partial class ProductForm : Form
         #endregion
         
         this.inventory = _inventory;
-        this.IDTextbox.Text = (this.inventory.Products.Count).ToString();
-        this.product = new productClass(AssociatedPartsListView.Items.AddRange, AssociatedPartsListView.Items.Clear, this.inventory.Products.Count, "", -1, -1, -1, -1);
+        this.IDTextbox.Text = (this.inventory.Products.Last().Value.ID+1).ToString();
+        this.product = new productClass(AssociatedPartsListView.Items.AddRange, AssociatedPartsListView.Items.Clear, (this.inventory.Products.Last().Value.ID+1), "", -1, -1, -1, -1);
         this.AllPartsListView.Items.AddRange(this.inventory.Parts.ToListViewItemArray());
     }
     public ProductForm(inventoryClass _inventory, string TitleString, productClass product)
@@ -69,7 +69,7 @@ public partial class ProductForm : Form
         #endregion
         
         this.inventory = _inventory;
-        this.IDTextbox.Text = (this.inventory.Products.Count).ToString();
+        this.IDTextbox.Text = (product.ID).ToString();
         this.product = product;
         this.product.AssociatedParts.addDelegates(AssociatedPartsListView.Items.AddRange, AssociatedPartsListView.Items.Clear);
         this.AllPartsListView.Items.AddRange(this.inventory.Parts.ToListViewItemArray());
@@ -115,10 +115,11 @@ public partial class ProductForm : Form
 
     private void AddPartButton_Click(object sender, EventArgs e)
     {
-        List<int> selected = this.AllPartsListView.SelectedIndices.Cast<int>().ToList();
-        foreach (int index in selected)
+        List<ListViewItem> selected = this.AllPartsListView.SelectedItems.Cast<ListViewItem>().ToList();
+        foreach (ListViewItem partLVI in selected)
         {
-            if (this.product.AssociatedParts.Contains(this.inventory.Parts[index]))
+            int index = int.Parse(partLVI.SubItems[0].Text);
+            if (this.product.AssociatedParts.ContainsValue(this.inventory.Parts[index]))
             {
                 continue;
             }
@@ -128,13 +129,10 @@ public partial class ProductForm : Form
 
     private void RemovePartButton_Click(object sender, EventArgs e)
     {
-        List<int> selected = this.AssociatedPartsListView.SelectedIndices.Cast<int>().ToList();
-        int subtractor = 0;
-        for (int i = 0; (i-subtractor) < selected.Count; i++)
+        List<ListViewItem> selected = this.AssociatedPartsListView.SelectedItems.Cast<ListViewItem>().ToList();
+        foreach (ListViewItem selectedLVI in selected)
         {
-            this.product.removeAssociatedPart(selected[i-subtractor]-subtractor);
-            selected.RemoveAt(i-subtractor);
-            subtractor++;
+            this.product.removeAssociatedPart(int.Parse(selectedLVI.SubItems[0].Text));
         }
     }
 
@@ -254,15 +252,13 @@ public partial class ProductForm : Form
         this.product.Minimum = this.min;
         this.product.Maximum = this.max;
         this.product.AssociatedParts.removeDelegates();
-        
-        Console.WriteLine(this.product.AssociatedParts.Count);
 
 
-        if (this.product.ID > this.inventory.Products.Count-1)
+        if (!this.inventory.Products.ContainsKey(int.Parse(this.IDTextbox.Text)))
         {
             this.inventory.addProduct(this.product);
         }
-        else if (this.product.ID <= this.inventory.Products.Count-1)
+        else if (this.inventory.Products.ContainsKey(int.Parse(this.IDTextbox.Text)))
         {
             this.inventory.updateProduct(int.Parse(this.IDTextbox.Text), this.product);
         }

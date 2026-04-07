@@ -121,10 +121,10 @@ public partial class mainForm : Form
 
     private void PartsModifyButton_Click(object sender, EventArgs e)
     {
-        List<int> selected = this.PartsListView.SelectedIndices.Cast<int>().ToList();
-        foreach (int index in selected)
+        List<ListViewItem> selected = this.PartsListView.SelectedItems.Cast<ListViewItem>().ToList();
+        foreach (ListViewItem partLVI in selected)
         {
-            PartsForm modPart = new PartsForm(inventory, "Modify Part", inventory.Parts[index]);
+            PartsForm modPart = new PartsForm(inventory, "Modify Part", inventory.Parts[int.Parse(partLVI.SubItems[0].Text)]);
             using (modPart)
             {
                 modPart.ShowDialog();
@@ -134,31 +134,30 @@ public partial class mainForm : Form
 
     private void PartsDeleteButton_Click(object sender, EventArgs e)
     {
-        List<int> selected = this.PartsListView.SelectedIndices.Cast<int>().ToList();
-        int subtractor = 0;
-        for (int i = 0; (i-subtractor) < selected.Count; i++)
+        List<ListViewItem> selected = this.PartsListView.SelectedItems.Cast<ListViewItem>().ToList();
+        List<baseData> parts = this.inventory.Parts.Values.Cast<baseData>().ToList();
+        foreach (ListViewItem partLVI in selected)
         {
             bool dontdo = false;
-            foreach (baseData bd in this.inventory.Products)
+            baseData partBD = this.inventory.Parts[int.Parse(partLVI.SubItems[0].Text)];
+            foreach (baseData productBD in this.inventory.Products.Values)
             {
-                productClass product = (productClass)bd;
-                if (product.AssociatedParts.Contains(this.inventory.Parts[selected[i - subtractor] - subtractor]))
+                productClass product = (productClass)productBD;
+                if (product.AssociatedParts.ContainsValue(partBD))
                 {
                     MessageBox.Show($"Can not delete part associated with a product ({product.Name})");
                     dontdo = true;
                 }
             }
-
+        
             if (dontdo)
             {
                 continue;
             }
-            DialogResult confirmation = MessageBox.Show($"Are you sure you want to Delete {this.inventory.Parts[selected[i-subtractor]-subtractor].Name}.\nAll data will be lost!", $"Are you sure!", MessageBoxButtons.YesNo);
+            DialogResult confirmation = MessageBox.Show($"Are you sure you want to Delete {partBD.Name}.\nAll data will be lost!", $"Are you sure!", MessageBoxButtons.YesNo);
             if (confirmation == DialogResult.Yes)
             {
-                inventory.Parts.RemoveAt(selected[i-subtractor]-subtractor);
-                selected.RemoveAt(i-subtractor);
-                subtractor++;
+                inventory.Parts.RemoveAt(partBD.ID);
             }
         }
     }
@@ -175,10 +174,10 @@ public partial class mainForm : Form
 
     private void ProductsModifyButton_Click(object sender, EventArgs e)
     {
-        List<int> selected = this.ProductsListView.SelectedIndices.Cast<int>().ToList();
-        foreach (int index in selected)
+        List<ListViewItem> selected = this.ProductsListView.SelectedItems.Cast<ListViewItem>().ToList();
+        foreach (ListViewItem productLVI in selected)
         {
-            ProductForm modPart = new ProductForm(inventory, "Modify Part", (productClass)inventory.Products[index]);
+            ProductForm modPart = new ProductForm(inventory, "Modify Part", (productClass)inventory.Products[int.Parse(productLVI.SubItems[0].Text)]);
             using (modPart)
             {
                 modPart.ShowDialog();
@@ -188,16 +187,16 @@ public partial class mainForm : Form
 
     private void ProductsDeleteButton_Click(object sender, EventArgs e)
     {
-        List<int> selected = this.ProductsListView.SelectedIndices.Cast<int>().ToList();
-        int subtractor = 0;
-        for (int i = 0; (i-subtractor) < selected.Count; i++)
+        List<ListViewItem> selected = this.ProductsListView.SelectedItems.Cast<ListViewItem>().ToList();
+        List<baseData> products = this.inventory.Products.Values.Cast<baseData>().ToList();
+        foreach (ListViewItem productLVI in selected)
         {
-            DialogResult confirmation = MessageBox.Show($"Are you sure you want to Delete {this.inventory.Products[selected[i-subtractor]-subtractor].Name}.\nAll data will be lost!", $"Are you sure!", MessageBoxButtons.YesNo);
+            baseData productBD = this.inventory.Products[int.Parse(productLVI.SubItems[0].Text)];
+            
+            DialogResult confirmation = MessageBox.Show($"Are you sure you want to Delete {productBD.Name}.\nAll data will be lost!", $"Are you sure!", MessageBoxButtons.YesNo);
             if (confirmation == DialogResult.Yes)
             {
-                inventory.removeProduct(selected[i-subtractor]-subtractor);
-                selected.RemoveAt(i-subtractor);
-                subtractor++;
+                inventory.Products.RemoveAt(productBD.ID);
             }
         }
     }

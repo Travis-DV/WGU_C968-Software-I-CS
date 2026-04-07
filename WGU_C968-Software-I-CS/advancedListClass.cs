@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace WGU_C968_Software_I_CS;
 
-public class advancedListClass : BindingList<baseData>
+public class advancedListClass : Dictionary<int, baseData>
 {
     private mainForm.LVIAddRange? lviAddRange;
     private mainForm.LVIClear? lviClear;
@@ -25,21 +25,21 @@ public class advancedListClass : BindingList<baseData>
     public new void Add(baseData newItem)
     {
         this.lviClear?.Invoke();
-        base.Add(newItem);
+        base.Add(newItem.ID, newItem);
         this.lviAddRange?.Invoke(this.ToListViewItemArray());
     }
 
     public new void RemoveAt(int index)
     {
         this.lviClear?.Invoke();
-        base.RemoveAt(index);
+        base.Remove(index);
         this.lviAddRange?.Invoke(this.ToListViewItemArray());
     }
 
     public new void Insert(int index, baseData item)
     {
         this.lviClear?.Invoke();
-        base.Insert(index, item);
+        base.Add(index, item);
         this.lviAddRange?.Invoke(this.ToListViewItemArray());
     }
 
@@ -57,10 +57,11 @@ public class advancedListClass : BindingList<baseData>
     
     public ListViewItem[] ToListViewItemArray()
     {
-        ListViewItem[] toListViewItemArray = new ListViewItem[this.Count];
-        for (int i = 0; i < this.Count; i++)
+        List<baseData> valueList = this.Values.ToList().OrderBy(x => x.ID).ToList();
+        ListViewItem[] toListViewItemArray = new ListViewItem[valueList.Count];
+        for (int i = 0; i < valueList.Count; i++)
         {
-            toListViewItemArray[i] = this[i].ToListViewItem();
+            toListViewItemArray[i] = valueList[i].ToListViewItem();
         }
 
         return toListViewItemArray;
@@ -68,10 +69,11 @@ public class advancedListClass : BindingList<baseData>
 
     public String[] ToNameArray()
     {
-        String[] toNameArray = new String[this.Count];
-        for (int i = 0; i < this.Count; i++)
+        List<baseData> valueList = this.Values.ToList().OrderBy(x => x.ID).ToList();
+        String[] toNameArray = new String[valueList.Count];
+        for (int i = 0; i < valueList.Count; i++)
         {
-            toNameArray[i] = this[i].Name;
+            toNameArray[i] = valueList[i].Name;
         }
 
         return toNameArray;
@@ -79,12 +81,19 @@ public class advancedListClass : BindingList<baseData>
     
     public int[] ToIdArray()
     {
-        int[] toIdArray = new int[this.Count];
-        for (int i = 0; i < this.Count; i++)
+        List<baseData> valueList = this.Values.ToList().OrderBy(x => x.ID).ToList();
+        int[] toIdArray = new int[valueList.Count];
+        for (int i = 0; i < valueList.Count; i++)
         {
-            toIdArray[i] = this[i].ID;
+            toIdArray[i] = valueList[i].ID;
         }
 
         return toIdArray;
+    }
+
+    public KeyValuePair<int, baseData> Last()
+    {
+        List<baseData> valueList = this.Values.ToList().OrderBy(x => x.ID).ToList();
+        return new KeyValuePair<int, baseData>(valueList[^1].ID, valueList[^1]);
     }
 }
